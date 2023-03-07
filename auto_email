@@ -1,0 +1,24 @@
+
+from datetime import datetime
+import random
+import smtplib
+
+MY_EMAIL = "your email"
+MY_PASSWORD = "your password"
+person_a = "person_a@aol.net"
+person_b = "person_b@aol.net"
+# gen = "person_to_emailed@aol.net"
+def send_email():
+    file_path = r"C:\Users\t"
+    with open(file_path) as letter_file:
+        contents = letter_file.read()
+
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs="person_to_email@aol.net",
+            msg=f"Subject:Speech therapy update\n\n{contents}"
+        )
+send_email()
